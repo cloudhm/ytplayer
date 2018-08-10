@@ -87,6 +87,23 @@ public class YTWebView extends WebView {
         mLinkListener = listener;
     }
 
+    @Override
+    public void setOverScrollMode(int mode) {
+        try{
+            super.setOverScrollMode(mode);
+        } catch(Throwable e){
+            String trace = Log.getStackTraceString(e);
+            if (trace.contains("android.content.pm.PackageManager$NameNotFoundException")
+                    || trace.contains("java.lang.RuntimeException: Cannot load WebView")
+                    || trace.contains("android.webkit.WebViewFactory$MissingWebViewPackageException: Failed to load WebView provider: No WebView installed")) {
+                e.printStackTrace();
+            }else{
+                throw e;
+            }
+        }
+
+    }
+
     /**
      * Player
      */
@@ -196,7 +213,6 @@ public class YTWebView extends WebView {
     public void setVolume(int volume) {
         loadUrl("javascript:setVolume(" + volume + ")");
     }
-
 
     /**
      * Client Impl

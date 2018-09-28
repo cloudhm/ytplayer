@@ -95,7 +95,8 @@ public class YTWebView extends WebView {
             String trace = Log.getStackTraceString(e);
             if (trace.contains("android.content.pm.PackageManager$NameNotFoundException")
                     || trace.contains("java.lang.RuntimeException: Cannot load WebView")
-                    || trace.contains("android.webkit.WebViewFactory$MissingWebViewPackageException: Failed to load WebView provider: No WebView installed")) {
+                    || trace.contains("android.webkit.WebViewFactory$MissingWebViewPackageException: Failed to load WebView provider: No WebView installed")
+                    || ( e.getMessage() != null && e.getMessage().contains("com.google.android.webview"))) {
                 e.printStackTrace();
             }else{
                 throw e;

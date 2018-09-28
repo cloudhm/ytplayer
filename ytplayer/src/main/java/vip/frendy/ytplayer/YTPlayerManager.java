@@ -45,7 +45,7 @@ public class YTPlayerManager implements IYTJSListener, IYTWebViewListener {
     public YTWebView getWebView() {
         if(!hasLoadDefault) {
             hasLoadDefault = true;
-            mWebView.loadDefault("");
+            if(mWebView != null) mWebView.loadDefault("");
         }
 
         return mWebView;

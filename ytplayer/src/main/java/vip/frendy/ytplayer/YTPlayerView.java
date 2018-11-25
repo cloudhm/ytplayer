@@ -311,6 +311,9 @@ public class YTPlayerView<T> extends LinearLayout implements IYTJSListener, View
             mQualityChangeListener.onQualityChange(playbackQuality);
     }
 
+    public float getTotalVideoDuration() {
+        return totalVideoDuration;
+    }
 
     protected void changeSeekBar(float time){
         float progress =  (time/totalVideoDuration) * 1000;
